@@ -1,4 +1,5 @@
-from anchor import anchor_tabular
+# from anchor import anchor_tabular
+from alibi.explainers import AnchorTabular
 from necsuf_tabular_text import deg_nec_suff, suff_nec_pipeline
 import pandas as pd
 import numpy as np
@@ -27,14 +28,18 @@ def anchors_card_prec_comp(dataset, clf, num_features, CF_condition, num_inp=5, 
         all_inp_deg[i] = CF_df_deg
 
         # anchors
-        explainer = anchor_tabular.AnchorTabularExplainer(
-            {}, dataset.columns[:num_features],
+        explainer = AnchorTabular({}, dataset.columns[:num_features],
             dataset.values[:, :num_features],
             {})
 
+        # explainer = anchor_tabular.AnchorTabularExplainer(
+        #     {}, dataset.columns[:num_features],
+        #     dataset.values[:, :num_features],
+        #     {})
+
         exp = explainer.explain_instance(inp_i.values[:, :num_features], clf.predict, threshold=deg_thresh)
         anchors_new_row = pd.Series(
-            {"Achor": exp.names(), "Cardinality": len(exp.names()), "Precision": exp.precision()})
+            {"Anchor": exp.names(), "Cardinality": len(exp.names()), "Precision": exp.precision()})
         anchors_df = anchors_df.append(anchors_new_row, ignore_index=True)
 
     return all_inp_deg, anchors_df
