@@ -1,5 +1,5 @@
 from scipy import stats
-from necsuf_tabular_text import \
+from src.necsuf_tabular_text import \
     intervention_order, cost, subs_to_str, \
     all_choices
 import itertools

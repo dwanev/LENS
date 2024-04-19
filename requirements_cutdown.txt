@@ -1,0 +1,14 @@
+BeautifulSoup4==4.12.3
+gensim==4.3.2
+matplotlib==3.8.4
+nltk==3.8.1
+numpy==1.26.3
+pandas==2.2.2
+seaborn==0.13.2
+shap==0.45.0
+scikit-learn
+statsmodels==0.14.2
+torch==2.2.2
+# conda install nb_conda_kernels
+#pip install ipykernel
+#python -m ipykernel install --user --name=lens_temp
